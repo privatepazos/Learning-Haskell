@@ -26,6 +26,8 @@ pointstoLine :: [Point] -> [Line]
 pointstoLine points = zip points (tail $ cycle points)
 
 -- Sum Areas
+-- Note that base changes sign with the direction of the integral. This is key so that the underlying areas add up or
+-- substract each other. This is the critical point of this algorithm.
 
 arealine :: Point -> Point -> Float
 arealine x y = base*avheight
@@ -35,6 +37,9 @@ arealine x y = base*avheight
 
 areavector :: [Point] -> [Float]
 areavector = fmap (uncurry arealine).pointstoLine
+
+
+-- Program does stuff
 
 main :: IO ()
 main = do
